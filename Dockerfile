@@ -40,7 +40,7 @@ RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key
 RUN ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key
 RUN sed -ri "s/#UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config
 RUN sed -ri 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-#RUN echo 'AuthorizedKeysFile	.ssh/authorized_keys' 	>> /etc/ssh/sshd_config
+RUN echo 'AuthorizedKeysFile	.ssh/authorized_keys' 	>> /etc/ssh/sshd_config
 RUN echo 'PermitRootLogin	yes'			>> /etc/ssh/sshd_config
 RUN echo 'root:changeme' | chpasswd
 # Prepare a .ssh directory so we can optionally add our private key to the host and avoid needing a password to ssh into the container as root
